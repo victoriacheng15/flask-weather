@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }} Weather</title>
-  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-</head>
-<body>
-  <h1>Flask Weather App</h1>
-  <form action="/weather">
-    <input type="text" name="city" id="city" placeholder="Enter a City">
-    <input type="text" name="country" id="city" placeholder="Enter Country">
-    <button type="submit">Submit</button>
-  </form>
-  <div class="weather-display">
-    <h2>{{ title }}, {{ country }} Weather</h2>
-    <p>Current Weather Status: {{ status }}</p>
-    <p>Tempature: {{ temp }}c&deg;</p>
-    <p>Min Tempature: {{ min_temp }}c&deg;</p>
-    <p>Max Tempature: {{ max_temp }}c&deg;</p>
-    <p>Feels like: {{ feels_like }}c&deg;</p>
-    <p>Humidity: {{ humidity }}%</p>
-  </div>
+{% extends "index.html" %}
 
-</body>
-</html>
+{% block content %}
+
+<div class="weather-display">
+  <h2>{{ title }}, {{ country }} Weather</h2>
+  <p>Current Weather Status: {{ status }}</p>
+  <p>Tempature: {{ temp }}c&deg;</p>
+  <p>Min Tempature: {{ min_temp }}c&deg;</p>
+  <p>Max Tempature: {{ max_temp }}c&deg;</p>
+  <p>Feels like: {{ feels_like }}c&deg;</p>
+  <p>Humidity: {{ humidity }}%</p>
+</div>
+
+{% endblock %}
