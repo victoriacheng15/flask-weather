@@ -1,13 +1,16 @@
 from flask import Flask, render_template, request
 from weather import get_current_weather
 from waitress import serve
+from datetime import datetime
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    date = datetime.now().date()
+    time = datetime.now().time().strftime("%H:%M")
+    return render_template("index.html", data={ "date": date, "time": time })
 
 
 @app.route("/weather")
