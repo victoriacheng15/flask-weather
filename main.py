@@ -10,7 +10,7 @@ app = Flask(__name__)
 def index():
     date = datetime.now().date()
     time = datetime.now().time().strftime("%H:%M")
-    return render_template("index.html", data={ "date": date, "time": time })
+    return render_template("index.html", data={"date": date, "time": time})
 
 
 @app.route("/weather")
