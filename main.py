@@ -5,8 +5,9 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+
 def get_date_time():
-    date = datetime.now().date().strftime('%Y-%m-%d')
+    date = datetime.now().date().strftime("%Y-%m-%d")
     time = datetime.now().time().strftime("%H:%M")
     info = {"date": date, "time": time}
     return info
