@@ -5,22 +5,29 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+def get_date_time():
+    date = datetime.now().date().strftime('%Y-%m-%d')
+    time = datetime.now().time().strftime("%H:%M")
+    info = {"date": date, "time": time}
+    return info
+
 
 @app.route("/")
 def index():
-    date = datetime.now().date()
-    time = datetime.now().time().strftime("%H:%M")
-    return render_template("index.html", data={"date": date, "time": time})
+    info = get_date_time()
+    return render_template("index.html", info=info)
 
 
 @app.route("/weather")
 def get_weather():
+    info = get_date_time()
     city = request.args.get("city")
     country = request.args.get("country")
     weather_data = get_current_weather(city, country)
 
     return render_template(
         "weather.html",
+        info=info,
         title=weather_data["name"],
         country=weather_data["sys"]["country"],
         status=weather_data["weather"][0]["description"].capitalize(),
