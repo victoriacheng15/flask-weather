@@ -24,3 +24,12 @@ def test_weather(mock_get):
     mock_get.return_value = mock_response
     weather_data = weather.get_current_weather("Test City", "TC")
     assert weather_data == mock_response.json()
+
+@mock.patch("requests.get")
+def test_weather_error(mock_get):
+    mock_response = mock.Mock()
+    mock_response.status_code = 400
+    mock_get.return_value = mock_response
+
+    weather_data = weather.get_current_weather("Test City", "TC")
+    assert weather_data is None
